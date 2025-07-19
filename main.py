@@ -6,8 +6,6 @@ from scrape import (
     split_dom_content,
 )
 from parse import parse_with_groq
-import tkinter as tk
-from tkinter import filedialog
 import os
 from dotenv import load_dotenv
 
@@ -38,18 +36,6 @@ if not sbr_webdriver:
 if groq_api_key and sbr_webdriver:
     url = st.sidebar.text_input("Enter Website URL")
 
-    def select_folder():
-        root = tk.Tk()
-        root.withdraw()
-
-        
-        root.wm_attributes('-topmost', 1)
-
-        folder_path = filedialog.askdirectory(master=root)
-        root.destroy()
-
-        return folder_path
-
     #Scrape the Website
     if st.sidebar.button("Scrape Website"):
         if url:
@@ -63,7 +49,7 @@ if groq_api_key and sbr_webdriver:
                 cleaned_content = clean_body_content(body_content)
 
                 # Store the Web content in Streamlit session state
-                st.session_state.dom_content = cleaned_content
+                st.session_state.web_content = cleaned_content
 
                 # Display the Web content in an expandable text box
                 with st.expander("View Content"):
