@@ -69,7 +69,7 @@ if groq_api_key and sbr_webdriver:
 
                 try:
                     # Parse the content with Groq (pass groq_api_key)
-                    dom_chunks = split_dom_content(st.session_state.dom_content)
+                    dom_chunks = split_dom_content(st.session_state.web_content)
                     parsed_result = parse_with_groq(dom_chunks, parse_description, parse_structure, groq_api_key)
                     st.session_state.parsed_result = parsed_result
                     import json
